@@ -1,14 +1,19 @@
+# Download the helper library from https://www.twilio.com/docs/python/install
+import os
 from twilio.rest import Client
-accountSid = "AC45bb309f20425417b2f45166e56af60b"
-accountToken = "5bf50255ee87356bdb5ea5b6935c3bcc"
 
-client = new.client(accountSid, accountToken)
 
-message = client.messages.create(
-    messagingServiceSid = 'MG25da3c8338307f74082c5903bf0392d7', 
-    body = 'Test'
-    media_url = 'https://64.media.tumblr.com/10257a358c5c81c682d54fd431bf7af8/d88a932034cb7b97-af/s640x960/f245ce46266324f55a7c0fc1fa3e04e320df4fe3.jpg'
-    to = '+15875329229'
-)
+# Find your Account SID and Auth Token at twilio.com/console
+# and set the environment variables. See http://twil.io/secure
+account_sid = os.environ['AC21de4d14551de24b359aa63385103704']
+auth_token = os.environ['62c4c7e811c28848c28520583fe96d96']
+client = Client(account_sid, auth_token)
+
+message = client.messages \
+    .create(
+         body='This is the ship that made the Kessel Run in fourteen parsecs?',
+         from_='+18148697158',
+         to='+15875329229'
+     )
 
 print(message.sid)
